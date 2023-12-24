@@ -1,0 +1,49 @@
+.mytable {
+  border-collapse: collapse;
+  display: table;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+  border-radius: 5px;
+}
+
+.mytable th,
+.mytable td {
+  padding: 12px;
+}
+
+.mytable th {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.mytable th:first-child {
+  border-radius: 5px 0 0 0px;
+}
+
+.mytable th:last-child {
+  border-radius: 0 5px 0px 0;
+}
+
+.mytable tr {
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.mytable tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.04)
+}
+.wfrow {
+  display:flex;
+  justify-content: center;
+  gap: 10px;
+}
+.leftAlign {
+  text-align: left;
+}
+.gp-1 {
+  display: flex;
+  gap:10px;
+  padding-top: 15px;
+}
+.star {
+  /* font-size: 25px; */
+  color:#0facac;
+}
