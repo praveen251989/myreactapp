@@ -8,7 +8,7 @@ export const Table = (props) => {
         <thead>
           <tr>
             {columns.map((column, index) => 
-              <th key={index} >{column.label}</th>
+              <th key={index}>{column.label}</th>
             )}
           </tr>
         </thead>

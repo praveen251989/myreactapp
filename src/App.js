@@ -1,8 +1,6 @@
 import './App.css';
 import React from 'react';
 import { Table } from './Table';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomTable from './CustomTable';
 
 function getData() {
   return [
@@ -45,8 +43,7 @@ function App() {
     <div>
       <br/>
       <center>
-        {/* <Table className="mytable" columns={getColumns()} data={getData()}/> */}
-        <CustomTable columns={getColumns()} elements={elementsData}/>
+        <Table className="mytable" columns={getColumns()} data={getData()}/>
       </center>
       
     </div>
