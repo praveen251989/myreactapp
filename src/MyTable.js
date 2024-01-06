@@ -1,10 +1,11 @@
 import React from 'react';
+import { Table } from '@mui/material';
 
-export const Table = (props) => {
-  const {columns, data, className} = props;
+export const MyTable = (props) => {
+  const {columns, data} = props;
   return (
     <div>
-      <table className={className}>
+      <Table borderAxis="both" hoverRow>
         <thead>
           <tr>
             {columns.map((column, index) => 
@@ -13,15 +14,17 @@ export const Table = (props) => {
           </tr>
         </thead>
         <tbody>
-        {data.map((row, index) => 
+        {data.length > 0 ? (data.map((row, index) => 
           <tr key={index}>
             {columns.map((column, cindex) => 
               <td key={cindex} >{row[`${column.key}`]}</td>
             )}
           </tr>
-        )}
+        )) : 
+        (<tr><td>No Data Available</td></tr>)
+        }
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }

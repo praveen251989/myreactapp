@@ -30,10 +30,11 @@
 .mytable tr:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.04)
 }
-.wfrow {
+.wfrow {  
   display:flex;
   justify-content: center;
-  gap: 10px;
+  align-items: normal;
+  gap: 50px;
 }
 .leftAlign {
   text-align: left;
@@ -43,7 +44,12 @@
   gap:10px;
   padding-top: 15px;
 }
-.star {
-  /* font-size: 25px; */
-  color:#0facac;
+.marginTop {
+  margin-top: 50px;
+}
+.wfrow a {
+  width: 150px;
+}
+.boldFont {
+  font-weight: bold;
 }

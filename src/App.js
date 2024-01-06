@@ -1,51 +1,29 @@
 import './App.css';
 import React from 'react';
-import { Table } from './Table';
-
-function getData() {
-  return [
-    {"firstName":"Praveen", "lastName":"Penumatsa", "address":"Hyderabad", "age":34},
-    {"firstName":"Kumar", "lastName":"Penumatsa", "address":"Kakinada", "age":32},
-    {"firstName":"Prasanna", "lastName":"Indukuri", "address":"Hyderabad", "age":30},
-    {"firstName":"Varma", "lastName":"RudraRaju", "address":"Hyderabad", "age":25},
-    {"firstName":"Raghu", "lastName":"Kalidindi", "address":"Hyderabad", "age":20}
-  ]
-}
-function getColumns() {
-  return [
-    {
-      "key":"firstName",
-      "label":"First Name"
-    },
-    {
-      "key":"lastName",
-      "label":"Last Name"
-    },
-    {
-      "key":"address",
-      "label":"Address"
-    },
-    {
-      "key":"age",
-      "label":"Age"
-    },
-  ]
-}
+import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
+import Home from './Home';
+import Admin from './admin/Admin';
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
+import Login from "./login/Login";
+import AdminDetail from './admin/AdminDetail';
 
 function App() {
-  const elementsData = [
-    {"name":"equipMake","label":"Equipment Make", "required":true},
-    {"name":"equipModel","label":"Equipment Model", "required":true},
-    {"name":"serialNumber","label":"Serial Number", "required":false},
-    {"name":"startingMeter","label":"Starting Meter", "required":false},
-  ]
+  const {currentUser} = useContext(AuthContext)
+
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/login" />;
+  };
   return (
     <div>
-      <br/>
-      <center>
-        <Table className="mytable" columns={getColumns()} data={getData()}/>
-      </center>
-      
+      <BrowserRouter>
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route index element={ <RequireAuth><Home /></RequireAuth> } />
+          <Route path="admin" element={ <RequireAuth><Admin/></RequireAuth> } />
+          <Route path="admin/detail" element={<RequireAuth><AdminDetail/></RequireAuth>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
