@@ -55,12 +55,10 @@ const Admin = () => {
       setIdPr(file);
       setIdPrFileName(file.name)
     }
-    console.log(file)
     const storageRef = ref(storage, 'files/' + file.name);
     uploadBytes(storageRef, file).then((snapshot) => {
       console.log('Uploaded a blob or file!');
       getDownloadURL(snapshot.ref).then((downloadURL) => {
-        console.log(downloadURL);
         if(e.target.name === 'noc') {
           setState((prevState) => ({...prevState, noc:downloadURL}));
         } else {
