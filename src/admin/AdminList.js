@@ -229,4 +229,4 @@ const AdminList = () => {
   );
 };
 
-export default Admin;
+export default AdminList;
