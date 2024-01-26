@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
 import Home from './Home';
-import Admin from './admin/Admin';
+import Admin from './admin/AdminList';
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Login from "./login/Login";

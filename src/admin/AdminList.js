@@ -14,7 +14,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
-const Admin = () => {
+const AdminList = () => {
   const initialState = {
     title         :"",
     firstName     :"",

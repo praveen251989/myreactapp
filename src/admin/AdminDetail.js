@@ -25,7 +25,7 @@ const AdminDetail = () => {
 						<Tab sx={{ fontWeight:'bold'}} label="Quizzlet" value="2" />
 						<Tab sx={{ fontWeight:'bold'}} label="Reports" value="3" />
 						<Tab sx={{ fontWeight:'bold'}} label="Analytics" value="4" />
-						<Tab sx={{ fontWeight:'bold'}} label="FND" value="5" />
+						<Tab sx={{ fontWeight:'bold'}} label="FIND" value="5" />
 						<Tab sx={{ fontWeight:'bold'}} label="Ad Configuration" value="6" />
 						<Tab sx={{ fontWeight:'bold'}} label="BO Concern" value="7" />
 					</TabList>
