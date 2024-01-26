@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { Routes, Route, Navigate, BrowserRouter } from 'react-router-dom';
 import Home from './Home';
-import Admin from './admin/AdminList';
+import AdminList from './admin/AdminList';
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Login from "./login/Login";
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="login" element={<Login />} />
           <Route index element={ <RequireAuth><Home /></RequireAuth> } />
-          <Route path="admin" element={ <RequireAuth><Admin/></RequireAuth> } />
+          <Route path="admin" element={ <RequireAuth><AdminList/></RequireAuth> } />
           <Route path="admin/detail" element={<RequireAuth><AdminDetail/></RequireAuth>}/>
         </Routes>
       </BrowserRouter>
