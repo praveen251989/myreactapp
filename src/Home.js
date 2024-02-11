@@ -1,6 +1,5 @@
 import React from "react";
-import { Button} from "@mui/material";
-
+import { Button } from "@mui/material";
 
 const Home = () => {
 	return (
@@ -12,10 +11,9 @@ const Home = () => {
 				<Button variant="contained" href="/user">
 					User
 				</Button>
-				
 			</div>
 			<div className="wfrow marginTop">
-        <Button variant="contained" href="/employee">
+				<Button variant="contained" href="/employee">
 					Employee
 				</Button>
 				<Button variant="contained" href="/reports">
@@ -23,19 +21,18 @@ const Home = () => {
 				</Button>
 			</div>
 			<div className="wfrow marginTop">
-      <Button variant="contained" href="/analytics">
+				<Button variant="contained" href="/analytics">
 					Analytics
 				</Button>
 				<Button variant="contained" href="/quizzlet">
 					Quizzlet
 				</Button>
 			</div>
-      <div className="wfrow marginTop">
+			<div className="wfrow marginTop">
 				<Button variant="contained" href="/configuration">
 					Configuration
 				</Button>
 			</div>
-      
 		</div>
 	);
 };

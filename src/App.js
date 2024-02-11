@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Login from "./login/Login";
 import AdminDetail from './admin/AdminDetail';
+import Configuration from './pages/configuration';
 
 function App() {
   const {currentUser} = useContext(AuthContext)
@@ -22,6 +23,7 @@ function App() {
           <Route index element={ <RequireAuth><Home /></RequireAuth> } />
           <Route path="admin" element={ <RequireAuth><AdminList/></RequireAuth> } />
           <Route path="admin/detail" element={<RequireAuth><AdminDetail/></RequireAuth>}/>
+          <Route path="configuration" element={<RequireAuth><Configuration/></RequireAuth>}/>
         </Routes>
       </BrowserRouter>
     </div>
