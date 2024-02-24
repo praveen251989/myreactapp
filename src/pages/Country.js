@@ -68,7 +68,6 @@ const Country = (props) => {
 		promise.then(resp =>{
 			alert(resp);
 		})
-		console.log(ur, or);
 	};
 
 	const handleProcessRowUpdateError = (error) => {
