@@ -65,9 +65,6 @@ function Configuration() {
 					{showElement && target === 'SegmentLocation' && (
 						<SegmentLocation targetE={target} />
 					)}
-					{showElement && target === 'SegmentLocation' && (
-						<SegmentLocation targetE={target} />
-					)}
 				</div>
 			</Paper>
     </Box>

@@ -141,7 +141,7 @@ const SegmentLocation = (props) => {
 		fetchLocations();
 		fetchSegments();
 		fetchSegmentLocations();
-	}, [country, state, city, location, segment, segmentLocation]);
+	}, [country, state, city, location, segment]);
 
 	const columns = [
 		{
@@ -257,20 +257,6 @@ const SegmentLocation = (props) => {
 					>
 						{ segments.map((segm) => (
 							<MenuItem key={segm} value={segm}>{segm}</MenuItem>
-						))}
-					</Select>
-				</FormControl>
-				<FormControl sx={{ width: 300 }}>
-					<InputLabel >
-						Segment Location
-					</InputLabel>
-					<Select
-						value={segmentLocation}
-						label="Segment Location"
-						onChange={handleSegmentLocationChange}
-					>
-						{ segmentLocations.map((segmLoc) => (
-							<MenuItem key={segmLoc} value={segmLoc}>{segmLoc}</MenuItem>
 						))}
 					</Select>
 				</FormControl>

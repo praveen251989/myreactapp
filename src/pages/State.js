@@ -115,20 +115,6 @@ const State = (props) => {
 						))}
 					</Select>
 				</FormControl>
-				<FormControl sx={{ width: 300 }}>
-					<InputLabel >
-						State
-					</InputLabel>
-					<Select
-						value={state}
-						label="State"
-						onChange={handleStateChange}
-					>
-						{ states.map((state) => (
-							<MenuItem key={state} value={state}>{state}</MenuItem>
-						))}
-					</Select>
-				</FormControl>
 				<TextField
 					label={`Enter ${targetE}`}
 					variant="outlined"

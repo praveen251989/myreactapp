@@ -187,20 +187,6 @@ const Location = (props) => {
 						))}
 					</Select>
 				</FormControl>
-				<FormControl sx={{ width: 300 }}>
-					<InputLabel >
-						Location
-					</InputLabel>
-					<Select
-						value={location}
-						label="Location"
-						onChange={handleLocationChange}
-					>
-						{ locations.map((location) => (
-							<MenuItem key={location} value={location}>{location}</MenuItem>
-						))}
-					</Select>
-				</FormControl>
 				<TextField
 					label={`Enter ${targetE}`}
 					variant="outlined"

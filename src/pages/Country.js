@@ -82,21 +82,6 @@ const Country = (props) => {
 	return (
 		<div>
 			<Stack spacing={3}>
-				<FormControl sx={{ m: 1, width: 300 }}>
-					<InputLabel >
-						Countries
-					</InputLabel>
-					<Select
-						id="demo-simple-select-helper"
-						value={country}
-						label="Countries"
-						onChange={handleChange}
-					>
-						{ data.map((country) => (
-							<MenuItem key={country.name} value={country.name}>{country.name}</MenuItem>
-						))}
-					</Select>
-				</FormControl>
 				<TextField
 					label={`Enter ${targetE}`}
 					variant="outlined"
