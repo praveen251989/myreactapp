@@ -53,3 +53,8 @@
 .boldFont {
   font-weight: bold;
 }
+.rightDivContent {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
