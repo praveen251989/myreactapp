@@ -11,6 +11,8 @@ import City from './City';
 import Location from './Location';
 import Segment from './Segment';
 import SegmentLocation from './SegmentLocation';
+import Events from './Events';
+import ConfigElement from './ConfigElement';
 
 function Configuration() {
 	const [showElement, setShowElement] = useState(false);
@@ -20,6 +22,19 @@ function Configuration() {
 		setShowElement(true);
 		setTarget(e.id);
 	};
+
+	function GetElement() {
+		switch(target) {
+			case 'Country': return <Country targetE={target}/>; 
+			case 'State': return <State targetE={target} />;
+			case 'City': return <City targetE={target} />;
+			case 'Location': return <Location targetE={target} />;
+			case 'Segment': return <Segment targetE={target} />;
+			case 'SegmentLocation': return <SegmentLocation targetE={target} />;
+			case 'Events': return <Events targetE={target} />;
+			default: return <ConfigElement targetE={target} />;
+		}
+	}
 	
 	return (
 		<Box sx={{display:"flex"}}>
@@ -43,28 +58,67 @@ function Configuration() {
 					<Button id="SegmentLocation" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
 						Segment Location
 					</Button>
+					<Button id="Events" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+						Events
+					</Button>
+					<Button id="ComplexityLevel" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+						Complexity Level
+					</Button>
+					<Button id="UserStatus" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+						User Status
+					</Button>
+					<Button id="QuizletStatus" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+						Quizlet Status
+					</Button>
+					<Button id="Gender" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Gender
+					</Button>
+					<Button id="AdTypes" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+						Ad Types
+					</Button>
+					<Button id="Months" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+						Months
+					</Button>
+					<Button id="BusinessConcernTypes" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Business Concern Types
+					</Button>
+					<Button id="Category" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Category
+					</Button>
+					<Button id="MaritalStatus" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Marital Status
+					</Button>
+					<Button id="Employment" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Employment
+					</Button>
+					<Button id="EmploymentStatus" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Employment Status
+					</Button>
+					<Button id="AdFrequency" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Ad Frequency
+					</Button>
+					<Button id="ChartType" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Chart Type
+					</Button>
+					<Button id="ExpenditureType" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Expenditure Type
+					</Button>
+					<Button id="AgeRange" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Age Range
+					</Button>
+					<Button id="Permissions" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Permissions
+					</Button>
+					<Button id="Roles" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
+					Roles
+					</Button>
 				</Stack>
 			</Paper>
 			<Paper elevation={3} style={{ width: '85%',marginLeft:'10px', padding: '10px', marginTop:'5px'}}>
 				<div className="rightDivContent">
-					{showElement && target === 'Country' && (
-						<Country targetE={target} />
-					)}
-					{showElement && target === 'State' && (
-						<State targetE={target} />
-					)}
-					{showElement && target === 'City' && (
-						<City targetE={target} />
-					)}
-					{showElement && target === 'Location' && (
-						<Location targetE={target} />
-					)}
-					{showElement && target === 'Segment' && (
-						<Segment targetE={target} />
-					)}
-					{showElement && target === 'SegmentLocation' && (
-						<SegmentLocation targetE={target} />
-					)}
+					{showElement && (
+						<GetElement/>
+					)}					
 				</div>
 			</Paper>
     </Box>

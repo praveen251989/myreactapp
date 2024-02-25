@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import { Stack } from "@mui/material";
 import '../App.css';
-import { doc, getDocs, setDoc, collection, query, where } from "firebase/firestore"; 
+import { doc, getDocs, setDoc, collection, } from "firebase/firestore"; 
 import {db} from "../config/firebase";
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -15,8 +15,6 @@ const State = (props) => {
     const [textData, setTextData] = useState('');
     const {targetE} = props;
     const [country, setCountry] = useState('');
-	const [state, setState] = useState('');
-	const [states, setStates] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [tableData, setTableData] = useState([]);
 
@@ -28,9 +26,9 @@ const State = (props) => {
 		setCountry(event.target.value);
 	};
 
-	const handleStateChange = (event) => {
+/* 	const handleStateChange = (event) => {
 		setState(event.target.value);
-	};
+	}; */
 
     const handleAdd = async () => {
 		await setDoc(doc(db, "State", `${textData}`), 
@@ -53,28 +51,20 @@ const State = (props) => {
 	};
 
 	const fetchStates = async () => {
-		let statesArr = [];
 		let tableDataArr = [];
 		let index = 1;
-		const queryStates = await getDocs(query(collection(db, "State"), where("country", "==", country)));
-		queryStates.forEach((doc) => {
-			statesArr.push(doc.data().state);
-		});
-		
 		const queryAllStates = await getDocs(collection(db, "State"));
 		queryAllStates.forEach((doc) => {
 			tableDataArr.push({ ...doc.data(), id: index });
 			index++;
 		});
-		console.log(statesArr)
-		setStates(statesArr);
 		setTableData(tableDataArr);
 	};
 
 	useEffect(() => {
 		fetchCountries();
 		fetchStates();
-	}, [country, state]);
+	}, [country]);
 
 	const columns = [
 		{
@@ -145,8 +135,8 @@ const State = (props) => {
 						},
 					}}
 					pageSizeOptions={[5]}
-					checkboxSelection
-					//disableRowSelectionOnClick
+					//checkboxSelection
+					disableRowSelectionOnClick
 					disableColumnFilter
 					disableColumnSelector
 					disableDensitySelector

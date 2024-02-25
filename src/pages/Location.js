@@ -17,8 +17,6 @@ const Location = (props) => {
     const [country, setCountry] = useState('');
 	const [state, setState] = useState('');
 	const [city, setCity] = useState('');
-	const [location, setLocation] = useState('');
-	const [locations, setLocations] = useState([]);
 	const [cities, setCities] = useState([]);
 	const [states, setStates] = useState([]);
 	const [countries, setCountries] = useState([]);
@@ -40,9 +38,9 @@ const Location = (props) => {
 		setCity(event.target.value);
 	};
 
-	const handleLocationChange = (event) => {
+	/* const handleLocationChange = (event) => {
 		setLocation(event.target.value);
-	};
+	}; */
 
     const handleAdd = async () => {
 		await setDoc(doc(db, "Location", `${textData}`), 
@@ -85,20 +83,13 @@ const Location = (props) => {
 	};
 
 	const fetchLocations = async () => {
-		let locationsArr = [];
 		let tableDataArr = [];
 		let index = 1;
-		const queryLocations = await getDocs(query(collection(db, "Location"), where("city", "==", city)));
-		queryLocations.forEach((doc) => {
-			locationsArr.push(doc.data().location);
-		});
-
 		const queryAllLocations = await getDocs(collection(db, "Location"));
 		queryAllLocations.forEach((doc) => {
 			tableDataArr.push({ ...doc.data(), id: index });
 			index++;
 		});
-		setLocations(locationsArr);
 		setTableData(tableDataArr);
 	};
 
@@ -107,7 +98,7 @@ const Location = (props) => {
 		fetchStates();
 		fetchCities();
 		fetchLocations();
-	}, [country, state, city, location]);
+	}, [country, state, city]);
 
 	const columns = [
 		{

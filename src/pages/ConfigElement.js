@@ -7,7 +7,7 @@ import {db} from "../config/firebase";
 import TextField from '@mui/material/TextField';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
-const Country = (props) => {
+const ConfigElement = (props) => {
     const [textData, setTextData] = useState('');
     const {targetE} = props;
 	const [data, setData] = useState([]);
@@ -16,17 +16,13 @@ const Country = (props) => {
 		setTextData(event.target.value);
     };
 
-/*     const handleChange = (event) => {
-		setCountry(event.target.value);
-	}; */
-
     const handleAdd = async () => {
-		await setDoc(doc(db, "Country", `${textData}`), 
+		await setDoc(doc(db, targetE, `${textData}`), 
 			{
-				name:`${textData}`
+				value:`${textData}`
 			}
 		);
-		fetchCountries();
+		fetchData();
 		setTextData('');
 	}
 	const columns = [
@@ -36,40 +32,25 @@ const Country = (props) => {
 			width: 150,
 		},
 		{
-			field: 'name',
-			headerName: 'Name',
+			field: 'value',
+			headerName: 'Value',
 			width: 150,
 			editable: true,
 		}
 	];
-	const fetchCountries = async () => {
-		let countries = [];
+	const fetchData = async () => {
+		let tData = [];
 		let index = 1;
-		const queryCountries = await getDocs(collection(db, "Country"));
+		const queryCountries = await getDocs(collection(db, targetE));
 		queryCountries.forEach((doc) => {
-			countries.push({ ...doc.data(), id: index });
+			tData.push({ ...doc.data(), id: index });
 			index++;
 		});
-		setData(countries);
+		setData(tData);
 	};
-
-	const handleCellEdit = (ur, or) => {
-		const promise = new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve("Async operation succeeded!");
-			}, 200);
-		});
-		promise.then(resp =>{
-			alert(resp);
-		})
-	};
-
-	const handleProcessRowUpdateError = (error) => {
-		//console.log(error)
-	}
 
 	useEffect(() => {
-		fetchCountries();
+		fetchData();
 	}, []);
 
 	return (
@@ -109,10 +90,6 @@ const Country = (props) => {
 					disableColumnFilter
 					disableColumnSelector
 					disableDensitySelector
-					onCellEditStop={(params, event) => {
-						console.log(params)
-					}}
-					//onProcessRowUpdateError={handleProcessRowUpdateError}
 					slots={{ toolbar: GridToolbar }}
 					slotProps={{
 						toolbar: {
@@ -125,4 +102,4 @@ const Country = (props) => {
 	);
 };
 
-export default Country;
+export default ConfigElement;

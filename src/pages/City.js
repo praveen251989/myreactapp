@@ -16,8 +16,6 @@ const City = (props) => {
     const {targetE} = props;
     const [country, setCountry] = useState('');
 	const [state, setState] = useState('');
-	const [city, setCity] = useState('');
-	const [cities, setCities] = useState([]);
 	const [states, setStates] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [tableData, setTableData] = useState([]);
@@ -34,9 +32,9 @@ const City = (props) => {
 		setState(event.target.value);
 	};
 
-	const handleCityChange = (event) => {
+	/* const handleCityChange = (event) => {
 		setCity(event.target.value);
-	};
+	}; */
 
     const handleAdd = async () => {
 		await setDoc(doc(db, "City", `${textData}`), 
@@ -69,20 +67,13 @@ const City = (props) => {
 	};
 
 	const fetchCities = async () => {
-		let citiesArr = [];
 		let tableDataArr = [];
 		let index = 1;
-		const queryCities = await getDocs(query(collection(db, "City"), where("state", "==", state)));
-		queryCities.forEach((doc) => {
-			citiesArr.push(doc.data().city);
-		});
-
 		const queryAllCities = await getDocs(collection(db, "City"));
 		queryAllCities.forEach((doc) => {
 			tableDataArr.push({ ...doc.data(), id: index });
 			index++;
 		});
-		setCities(citiesArr);
 		setTableData(tableDataArr);
 	};
 
@@ -90,7 +81,7 @@ const City = (props) => {
 		fetchCountries();
 		fetchStates();
 		fetchCities();
-	}, [country,state,city]);
+	}, [country, state]);
 
 	const columns = [
 		{

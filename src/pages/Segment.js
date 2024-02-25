@@ -17,10 +17,6 @@ const Segment = (props) => {
     const [country, setCountry] = useState('');
 	const [state, setState] = useState('');
 	const [city, setCity] = useState('');
-	const [location, setLocation] = useState('');
-	const [locations, setLocations] = useState([]);
-	const [segment, setSegment] = useState('');
-	const [segments, setSegments] = useState([]);
 	const [cities, setCities] = useState([]);
 	const [states, setStates] = useState([]);
 	const [countries, setCountries] = useState([]);
@@ -42,13 +38,13 @@ const Segment = (props) => {
 		setCity(event.target.value);
 	};
 
-	const handleLocationChange = (event) => {
+/* 	const handleLocationChange = (event) => {
 		setLocation(event.target.value);
-	};
+	}; */
 
-	const handleSegmentChange = (event) => {
+	/* const handleSegmentChange = (event) => {
 		setSegment(event.target.value);
-	};
+	}; */
 
     const handleAdd = async () => {
 		await setDoc(doc(db, "Segment", `${textData}`), 
@@ -56,7 +52,6 @@ const Segment = (props) => {
 				country:`${country}`,
 				state:`${state}`,
 				city:`${city}`,
-				location: `${location}`,
 				segment: `${textData}`
 			}
 		);
@@ -91,30 +86,23 @@ const Segment = (props) => {
 		setCities(citiesArr);
 	};
 
-	const fetchLocations = async () => {
+	/* const fetchLocations = async () => {
 		let locationsArr = [];
 		const queryLocations = await getDocs(query(collection(db, "Location"), where("city", "==", city)));
 		queryLocations.forEach((doc) => {
 			locationsArr.push(doc.data().location);
 		});
 		setLocations(locationsArr);
-	};
+	}; */
 
 	const fetchSegments = async () => {
-		let segmentsArr = [];
 		let tableDataArr = [];
-		const querySegments = await getDocs(query(collection(db, "Segment"), where("location", "==", location)));
-		querySegments.forEach((doc) => {
-			segmentsArr.push(doc.data().segment);
-		});
-
 		let index = 1;
 		const queryAllSegments = await getDocs(collection(db, "Segment"));
 		queryAllSegments.forEach((doc) => {
 			tableDataArr.push({ ...doc.data(), id: index });
 			index++;
 		});
-		setSegments(segmentsArr);
 		setTableData(tableDataArr);
 	};
 
@@ -122,9 +110,8 @@ const Segment = (props) => {
 		fetchCountries();
 		fetchStates();
 		fetchCities();
-		fetchLocations();
 		fetchSegments();
-	}, [country, state, city, location, segment]);
+	}, [country, state, city]);
 
 	const columns = [
 		{
@@ -147,12 +134,6 @@ const Segment = (props) => {
 		{
 			field: 'city',
 			headerName: 'City',
-			width: 150,
-			editable: true,
-		},
-		{
-			field: 'location',
-			headerName: 'Location',
 			width: 150,
 			editable: true,
 		},
@@ -209,7 +190,7 @@ const Segment = (props) => {
 						))}
 					</Select>
 				</FormControl>
-				<FormControl sx={{ width: 300 }}>
+				{/* <FormControl sx={{ width: 300 }}>
 					<InputLabel >
 						Location
 					</InputLabel>
@@ -222,7 +203,7 @@ const Segment = (props) => {
 							<MenuItem key={location} value={location}>{location}</MenuItem>
 						))}
 					</Select>
-				</FormControl>
+				</FormControl> */}
 				<TextField
 					label={`Enter ${targetE}`}
 					variant="outlined"
