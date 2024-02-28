@@ -11,7 +11,7 @@ import City from './City';
 import Location from './Location';
 import Segment from './Segment';
 import SegmentLocation from './SegmentLocation';
-import Events from './Events';
+//import Events from './Events';
 import ConfigElement from './ConfigElement';
 
 function Configuration() {
@@ -31,7 +31,7 @@ function Configuration() {
 			case 'Location': return <Location targetE={target} />;
 			case 'Segment': return <Segment targetE={target} />;
 			case 'SegmentLocation': return <SegmentLocation targetE={target} />;
-			case 'Events': return <Events targetE={target} />;
+			//case 'Events': return <Events targetE={target} />;
 			default: return <ConfigElement targetE={target} />;
 		}
 	}

@@ -19,6 +19,8 @@ const SegmentLocation = (props) => {
 	const [city, setCity] = useState('');
 	const [cities, setCities] = useState([]);
 	const [states, setStates] = useState([]);
+	const [segment, setSegment] = useState('');
+	const [segments, setSegments] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [tableData, setTableData] = useState([]);
 
@@ -38,13 +40,15 @@ const SegmentLocation = (props) => {
 		setCity(event.target.value);
 	};
 
+	const handleSegmentChange = (event) => {
+		setSegment(event.target.value);
+	};
+
 	/* const handleLocationChange = (event) => {
 		setLocation(event.target.value);
 	};
 
-	const handleSegmentChange = (event) => {
-		setSegment(event.target.value);
-	};
+
 
 	const handleSegmentLocationChange = (event) => {
 		setSegmentLocation(event.target.value);
@@ -56,6 +60,7 @@ const SegmentLocation = (props) => {
 				country:`${country}`,
 				state:`${state}`,
 				city:`${city}`,
+				segment:`${segment}`,
 				segmentlocation: `${textData}`
 			}
 		);
@@ -97,16 +102,16 @@ const SegmentLocation = (props) => {
 			locationsArr.push(doc.data().location);
 		});
 		setLocations(locationsArr);
-	};
+	};*/
 
 	const fetchSegments = async () => {
 		let segmentsArr = [];
-		const querySegments = await getDocs(query(collection(db, "Segment"), where("location", "==", location)));
+		const querySegments = await getDocs(query(collection(db, "Segment"), where("city", "==", city)));
 		querySegments.forEach((doc) => {
 			segmentsArr.push(doc.data().segment);
 		});
 		setSegments(segmentsArr);
-	}; */
+	}; 
 
 	const fetchSegmentLocations = async () => {
 		let tableDataArr = [];
@@ -123,8 +128,9 @@ const SegmentLocation = (props) => {
 		fetchCountries();
 		fetchStates();
 		fetchCities();
+		fetchSegments();
 		fetchSegmentLocations();
-	}, [country, state, city]);
+	}, [country, state, city, segment]);
 
 	const columns = [
 		{
@@ -147,6 +153,12 @@ const SegmentLocation = (props) => {
 		{
 			field: 'city',
 			headerName: 'City',
+			width: 150,
+			editable: true,
+		},
+		{
+			field: 'segment',
+			headerName: 'Segment',
 			width: 150,
 			editable: true,
 		},
@@ -216,7 +228,7 @@ const SegmentLocation = (props) => {
 							<MenuItem key={location} value={location}>{location}</MenuItem>
 						))}
 					</Select>
-				</FormControl>
+				</FormControl>*/}
 				<FormControl sx={{ width: 300 }}>
 					<InputLabel >
 						Segment
@@ -230,7 +242,7 @@ const SegmentLocation = (props) => {
 							<MenuItem key={segm} value={segm}>{segm}</MenuItem>
 						))}
 					</Select>
-				</FormControl> */}
+				</FormControl> 
 				<TextField
 					label={`Enter ${targetE}`}
 					variant="outlined"
