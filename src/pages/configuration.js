@@ -31,14 +31,13 @@ function Configuration() {
 			case 'Location': return <Location targetE={target} />;
 			case 'Segment': return <Segment targetE={target} />;
 			case 'SegmentLocation': return <SegmentLocation targetE={target} />;
-			//case 'Events': return <Events targetE={target} />;
 			default: return <ConfigElement targetE={target} />;
 		}
 	}
 	
 	return (
 		<Box sx={{display:"flex"}}>
-			<Paper elevation={3} style={{ width: '15%', height: '97vh', overflowY: 'auto',padding:'10px',marginLeft:'10px',marginTop:'5px' }}>
+			<Paper elevation={3} style={{ width: '15%', height: '91vh', overflowY: 'auto',padding:'10px',marginLeft:'10px',marginTop:'50px' }}>
 				<Stack spacing={1}>
 					<Button id="Country" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
 						Country
@@ -114,7 +113,7 @@ function Configuration() {
 					</Button>
 				</Stack>
 			</Paper>
-			<Paper elevation={3} style={{ width: '85%',marginLeft:'10px', padding: '10px', marginTop:'5px'}}>
+			<Paper elevation={3} style={{ width: '85%',marginLeft:'10px', padding: '10px', marginTop:'50px'}}>
 				<div className="rightDivContent">
 					{showElement && (
 						<GetElement/>

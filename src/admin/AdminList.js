@@ -124,7 +124,7 @@ const AdminList = () => {
   return (
     <div>
       <div>
-        <Button variant="contained" onClick={handleClickOpen} sx={{display:'block', marginLeft:'Auto', marginRight: "20px", marginTop:'20px',marginBottom:'20px' }}>
+        <Button variant="contained" onClick={handleClickOpen} sx={{display:'block', marginLeft:'Auto', marginRight: "20px", marginTop:'80px',marginBottom:'20px' }}>
           Add New
         </Button>      
       </div>
