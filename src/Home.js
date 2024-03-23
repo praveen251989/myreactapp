@@ -82,7 +82,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const Home = () => {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(true);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [content, setContent] = useState(null);
 	const { dispatch } = useContext(AuthContext);
@@ -166,8 +166,6 @@ const Home = () => {
 							px: 2.5,
 						}}
 						onClick={() => setContent('admin')}
-						// component="a"
-						// href="/admin"
 					>
 						<ListItemIcon
 							sx={{
@@ -189,8 +187,7 @@ const Home = () => {
 							justifyContent: open ? "initial" : "center",
 							px: 2.5,
 						}}
-						component="a"
-						href="/user"
+						onClick={() => setContent('user')}
 					>
 						<ListItemIcon
 							sx={{
@@ -212,8 +209,7 @@ const Home = () => {
 							justifyContent: open ? "initial" : "center",
 							px: 2.5,
 						}}
-						component="a"
-						href="/employee"
+						onClick={() => setContent('employee')}
 					>
 						<ListItemIcon
 							sx={{
@@ -235,8 +231,8 @@ const Home = () => {
 							justifyContent: open ? "initial" : "center",
 							px: 2.5,
 						}}
-						component="a"
-						href="/reports"
+
+						onClick={() => setContent('reports')}
 					>
 						<ListItemIcon
 							sx={{
@@ -258,8 +254,8 @@ const Home = () => {
 							justifyContent: open ? "initial" : "center",
 							px: 2.5,
 						}}
-						component="a"
-						href="/analytics"
+
+						onClick={() => setContent('analytics')}
 					>
 						<ListItemIcon
 							sx={{
@@ -281,8 +277,8 @@ const Home = () => {
 							justifyContent: open ? "initial" : "center",
 							px: 2.5,
 						}}
-						component="a"
-						href="/quizzlet"
+
+						onClick={() => setContent('quizzlet')}
 					>
 						<ListItemIcon
 							sx={{

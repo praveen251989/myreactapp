@@ -145,8 +145,9 @@ const City = (props) => {
 					variant="outlined"
 					value={textData}
 					onChange={(e) => handleTextChange(e)}
+					className='confWidth'
 				/>
-				<Button label="Add" variant="contained" onClick={handleAdd}>
+				<Button label="Add" variant="contained" onClick={handleAdd} className='confWidth'>
 					Add
 				</Button>
 			</Stack>

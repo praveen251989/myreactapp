@@ -64,9 +64,6 @@ const Country = (props) => {
 		})
 	};
 
-	const handleProcessRowUpdateError = (error) => {
-		//console.log(error)
-	}
 
 	useEffect(() => {
 		fetchCountries();
@@ -80,17 +77,14 @@ const Country = (props) => {
 					variant="outlined"
 					value={textData}
 					onChange={(e) => handleTextChange(e)}
+					className='confWidth'
 				/>
-				<Button label="Add" variant="contained" onClick={handleAdd}>
+				<Button label="Add" variant="contained" onClick={handleAdd} className='confWidth'>
 					Add
 				</Button>
 			</Stack>
 			<br />
-			<div
-				style={{
-					
-				}}
-			>
+			<div>
 				<DataGrid
 					rows={data}
 					columns={columns}
