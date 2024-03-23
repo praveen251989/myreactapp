@@ -152,9 +152,7 @@ const City = (props) => {
 				</Button>
 			</Stack>
 			<br />
-			<div
-				
-			>
+			<div style={{width:'100%',marginTop:'120px'}}>
 				<DataGrid
 					disableRowSelectionOnClick
 					rows={tableData}

@@ -84,7 +84,7 @@ const Country = (props) => {
 				</Button>
 			</Stack>
 			<br />
-			<div>
+			<div style={{width:'100%',marginTop:'260px'	}}>
 				<DataGrid
 					rows={data}
 					columns={columns}

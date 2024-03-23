@@ -117,9 +117,7 @@ const State = (props) => {
 				</Button>
 			</Stack>
 			<br />
-			<div
-				
-			>
+			<div style={{width:'100%',marginTop:'200px'}}>
 				<DataGrid
 					rows={tableData}
 					columns={columns}

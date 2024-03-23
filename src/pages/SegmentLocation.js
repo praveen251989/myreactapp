@@ -256,7 +256,7 @@ const SegmentLocation = (props) => {
 			</Stack>
 			<br />
 			<div
-				
+				style={{width:'100%'}}
 			>
 				<DataGrid
 					disableRowSelectionOnClick

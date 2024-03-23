@@ -190,9 +190,7 @@ const Location = (props) => {
 				</Button>
 			</Stack>
 			<br />
-			<div
-				
-			>
+			<div style={{width:'100%',marginTop:'60px'}}>
 				<DataGrid
 					disableRowSelectionOnClick
 					rows={tableData}

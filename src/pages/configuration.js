@@ -37,7 +37,7 @@ function Configuration() {
 	
 	return (
 		<Box sx={{display:"flex"}}>
-			<Paper elevation={3} style={{ width: '15%', height: '91vh', overflowY: 'auto',padding:'10px',marginLeft:'10px',marginTop:'50px' }}>
+			<div style={{ width: '15%', height: '91vh', overflowY: 'auto',padding:'10px',marginLeft:'10px',marginTop:'50px' }}>
 				<Stack spacing={1}>
 					<Button id="Country" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
 						Country
@@ -112,14 +112,14 @@ function Configuration() {
 					Roles
 					</Button>
 				</Stack>
-			</Paper>
-			<Paper elevation={3} style={{ width: '85%',marginLeft:'10px', padding: '10px', marginTop:'50px'}}>
+			</div>
+			<div style={{ width: '85%',marginLeft:'10px', padding: '10px', marginTop:'50px'}}>
 				<div className="rightDivContent">
 					{showElement && (
 						<GetElement/>
 					)}					
 				</div>
-			</Paper>
+			</div>
     </Box>
 	);
 }

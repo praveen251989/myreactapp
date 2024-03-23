@@ -68,10 +68,7 @@ const ConfigElement = (props) => {
 				</Button>
 			</Stack>
 			<br />
-			<div
-				style={{width:'100%'
-				}}
-			>
+			<div style={{width:'100%',marginTop:'280px'}}>
 				<DataGrid
 					rows={data}
 					columns={columns}
