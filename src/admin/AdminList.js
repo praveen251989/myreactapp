@@ -191,7 +191,6 @@ const AdminList = () => {
 						>
 							Add New
 						</Button>
-						<Button onClick={() => createNewTab("praveen kumar")}>New Tab</Button>
 					</div>
 					<Dialog open={open} onClose={handleClose}>
 						<DialogTitle>Admin Registration Form</DialogTitle>
