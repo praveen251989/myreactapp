@@ -1,6 +1,5 @@
 import "./datatable.css";
 import { DataGrid } from '@mui/x-data-grid';
-import { userColumns } from "./AdminTableSource";
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
@@ -10,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { setDoc, doc } from "firebase/firestore";  
 import {db} from "../config/firebase";
+import Link from '@mui/material/Link';
 
 const AdminTable = (props) => {
   const [open, setOpen] = useState(false);
@@ -27,6 +27,37 @@ const AdminTable = (props) => {
     setOpen(false);
     window.location.reload();
   }
+  const userColumns = [
+    { field: "id", headerName: "S.No", width: 100 },
+    {field: "firstName", headerName: "First Name", width: 200},
+    {field: "lastName", headerName: "Last Name", width: 200},
+    {
+      field: "name",
+      headerName: "Name",
+      width: 200,
+      filterable:false,
+      renderCell: (params) => {
+        return (
+			<div>
+				<Link
+          underline="hover"
+					component="button"
+					variant="body2"
+					onClick={() =>
+						props.createNewTab(
+							`${params.row.firstName} ${params.row.id}`
+						)
+					}
+				>
+					{params.row.firstName} {params.row.lastName}
+				</Link>
+			</div>
+		);
+      },
+    },
+    {field: "address2", headerName: "Location", width: 200},
+  ];
+
   const actionColumn = [
     {
       field: "action",
