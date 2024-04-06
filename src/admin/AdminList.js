@@ -225,7 +225,7 @@ const AdminList = () => {
         </form>               
         </DialogContent>        
       </Dialog>
-      {loading ? <Box sx={{ display: 'flex' }}><CircularProgress /></Box> : <AdminTable data={data}/>}      
+      {loading ? <Box sx={{ display: 'flex',justifyContent:'center',alignItems:'center' }}><CircularProgress /></Box> : <AdminTable data={data}/>}      
     </div>
   );
 };

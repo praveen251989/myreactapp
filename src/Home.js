@@ -111,10 +111,10 @@ const Home = () => {
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
-						onClick={()=>setOpen(!open)}
+						onClick={() => setOpen(!open)}
 						edge="start"
 						sx={{
-							marginRight: 5,							
+							marginRight: 1,							
 						}}
 					>
 						<MenuIcon />

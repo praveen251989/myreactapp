@@ -1,3 +1,4 @@
+import Button from '@mui/material/Button';
 export const userColumns = [
     { field: "id", headerName: "S.No", width: 70 },
     {field: "firstName", headerName: "First Name", width: 200},
@@ -10,7 +11,7 @@ export const userColumns = [
       renderCell: (params) => {
         return (
           <div>
-            {params.row.firstName} {params.row.lastName}
+            <Button sx={{textTransform: "none"}} variant="text">{params.row.firstName} {params.row.lastName}</Button>
           </div>
         );
       },
