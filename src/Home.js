@@ -25,6 +25,9 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import AdminList from "./admin/AdminList";
 import Configuration from "./pages/configuration";
 import { AuthContext } from "./context/AuthContext";
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import HomeIcon from '@mui/icons-material/Home';
+import HomePage from "./pages/HomePage";
 
 
 const drawerWidth = 240;
@@ -84,7 +87,7 @@ const Drawer = styled(MuiDrawer, {
 const Home = () => {
 	const [open, setOpen] = useState(true);
 	const [anchorEl, setAnchorEl] = useState(null);
-	const [content, setContent] = useState(null);
+	const [content, setContent] = useState('homepage');
 	const { dispatch } = useContext(AuthContext);
 
 	const handleMenu = (event) => {
@@ -116,11 +119,12 @@ const Home = () => {
 					>
 						<MenuIcon />
 					</IconButton>
+					<MonetizationOnIcon fontSize="large"/>
 					<Typography
 						variant="h6"
 						noWrap
 						component="div"
-						sx={{ flexGrow: 1 }}
+						sx={{ flexGrow: 1 ,marginLeft: '5px'}}
 					>
 						Quizzlet
 					</Typography>
@@ -159,6 +163,28 @@ const Home = () => {
 			<Drawer variant="permanent" open={open}>
 				<DrawerHeader/>
 				<List>
+					<ListItemButton
+						sx={{
+							minHeight: 48,
+							justifyContent: open ? "initial" : "center",
+							px: 2.5,
+						}}
+						onClick={() => setContent('homepage')}
+					>
+						<ListItemIcon
+							sx={{
+								minWidth: 0,
+								mr: open ? 3 : "auto",
+								justifyContent: "center",
+							}}
+						>
+							<HomeIcon />
+						</ListItemIcon>
+						<ListItemText
+							primary="Home"
+							sx={{ opacity: open ? 1 : 0 }}
+						/>
+					</ListItemButton>
 					<ListItemButton
 						sx={{
 							minHeight: 48,
@@ -318,7 +344,8 @@ const Home = () => {
 					</ListItemButton>
 				</List>
 			</Drawer>
-			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>				
+			<Box component="main" sx={{ flexGrow: 1, p: 3,marginTop:'50px' }}>
+				{content === 'homepage' && <HomePage/>}				
 				{content === 'admin' && <AdminList/> }
 				{content === 'configuration' && <Configuration/> }
 			</Box>

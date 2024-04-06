@@ -12,7 +12,8 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const AdminList = () => {
   const initialState = {
@@ -45,6 +46,7 @@ const AdminList = () => {
   const [idPrFileName, setIdPrFileName] = useState("");
   const nocRef = useRef();
   const idPrRef = useRef();
+  const [loading, setLoading] = useState(true);  
 
   const handleUpload = (e) => {
     const file = e.target.files[0]
@@ -102,7 +104,7 @@ const AdminList = () => {
     }
   }
 
-  const fetchAdminUsers = async () => {
+  const fetchAdminUsers = async () => {    
     let adminUsers = [];
     let index = 1;
     const queryAdminUsers = await getDocs(collection(db, "admin-users"));
@@ -111,6 +113,7 @@ const AdminList = () => {
       index++;
     });
     setData(adminUsers)
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -124,7 +127,7 @@ const AdminList = () => {
   return (
     <div>
       <div>
-        <Button variant="contained" onClick={handleClickOpen} sx={{display:'block', marginLeft:'Auto', marginRight: "20px", marginTop:'80px',marginBottom:'20px' }}>
+        <Button variant="contained" onClick={handleClickOpen} sx={{display:'block', marginLeft:'Auto', marginRight: "20px", marginTop:'20px',marginBottom:'20px' }}>
           Add New
         </Button>      
       </div>
@@ -171,7 +174,6 @@ const AdminList = () => {
               </RadioGroup>
             </Stack>
             {value === 'yes' && <TextField name="description" size="small" margin="normal" label="Description" onChange={handleChange}/>}
-            {/* <TextField name="noc" size="small" label="NOC from PS" margin="normal" onChange={handleChange}/> */}
             <TextField
               label="NOC from PS"
               margin="normal"
@@ -216,7 +218,6 @@ const AdminList = () => {
                 ),
               }}
             />
-            {/* <TextField name="idProof" size="small" label="ID Proof" margin="normal" onChange={handleChange}/> */}
             <TextField name="howDidYouKnow" size="small" label="How Did you know about us?" margin="normal" onChange={handleChange}/>
             <TextField name="bankActDetails" size="small" label="Bank Account Details" margin="normal" onChange={handleChange}/>  
             <Button variant="contained" type="submit" sx={{marginTop:'15px'}}>Submit</Button>        
@@ -224,7 +225,7 @@ const AdminList = () => {
         </form>               
         </DialogContent>        
       </Dialog>
-      <AdminTable data={data}/>
+      {loading ? <Box sx={{ display: 'flex' }}><CircularProgress /></Box> : <AdminTable data={data}/>}      
     </div>
   );
 };

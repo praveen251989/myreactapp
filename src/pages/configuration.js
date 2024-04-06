@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import { Stack } from "@mui/material";
 import '../App.css';
 import Country from "./Country";
@@ -37,7 +36,7 @@ function Configuration() {
 	
 	return (
 		<Box sx={{display:"flex"}}>
-			<div style={{ width: '15%', height: '91vh', overflowY: 'auto',padding:'10px',marginLeft:'10px',marginTop:'50px' }}>
+			<div style={{ width: '15%', height: '90vh', overflowY: 'auto',padding:'10px',marginLeft:'10px'}}>
 				<Stack spacing={1}>
 					<Button id="Country" variant="outlined" color="primary" fullWidth onClick={(e)=> handleClick(e.target)}>
 						Country
@@ -113,8 +112,8 @@ function Configuration() {
 					</Button>
 				</Stack>
 			</div>
-			<div style={{ width: '85%',marginLeft:'10px', padding: '10px', marginTop:'50px'}}>
-				<div className="rightDivContent">
+			<div style={{ width: '85%',marginLeft:'10px', padding: '10px'}}>
+				<div>
 					{showElement && (
 						<GetElement/>
 					)}					
