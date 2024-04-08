@@ -1,19 +1,26 @@
 import { useState, useEffect, useRef } from "react";
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 import AdminTable from "../datatable/AdminTable";
 import TextField from "@mui/material/TextField";
-import { FormControl, Stack,RadioGroup,FormControlLabel, Radio, Typography } from "@mui/material";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore"; 
-import {db, storage} from "../config/firebase";
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import {
+	FormControl,
+	Stack,
+	RadioGroup,
+	FormControlLabel,
+	Radio,
+	Typography,
+} from "@mui/material";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { db, storage } from "../config/firebase";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -21,141 +28,153 @@ import TabPanel from "@mui/lab/TabPanel";
 import { red } from "@mui/material/colors";
 
 const AdminList = () => {
-  const initialState = {
-    title         :"",
-    firstName     :"",
-    lastName      :"",
-    email         :"",
-    phone         :"",
-    address1      :"",
-    address2      :"",
-    license       :"",
-    gst           :"",
-    cst           :"",
-    experience    :"",
-    description   :"",
-    noc           :"",
-    idProof       :"",
-    howDidYouKnow :"",
-    bankActDetails:"",
-    approved      :"N",
-    id            :0
-  }
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('no');
-  const [state, setState] = useState(initialState);
-  const [data, setData] = useState([]);
-  const [noc, setNoc] = useState("");
-  const [idPr, setIdPr] = useState("");
-  const [nocFileName, setNocFileName] = useState("");
-  const [idPrFileName, setIdPrFileName] = useState("");
-  const nocRef = useRef();
-  const idPrRef = useRef();
-  const [loading, setLoading] = useState(true);
-  const [selectedTab, setSelectedTab] = useState("1");
-  const [tabs, setTabs] = useState([]);
-  const [panels, setPanels] = useState([]);
+	const initialState = {
+		title: "",
+		firstName: "",
+		lastName: "",
+		email: "",
+		phone: "",
+		address1: "",
+		address2: "",
+		license: "",
+		gst: "",
+		cst: "",
+		experience: "",
+		description: "",
+		noc: "",
+		idProof: "",
+		howDidYouKnow: "",
+		bankActDetails: "",
+		approved: "N",
+		id: 0,
+	};
+	const [open, setOpen] = useState(false);
+	const [value, setValue] = useState("no");
+	const [state, setState] = useState(initialState);
+	const [data, setData] = useState([]);
+	const [noc, setNoc] = useState("");
+	const [idPr, setIdPr] = useState("");
+	const [nocFileName, setNocFileName] = useState("");
+	const [idPrFileName, setIdPrFileName] = useState("");
+	const nocRef = useRef();
+	const idPrRef = useRef();
+	const [loading, setLoading] = useState(true);
+	const [selectedTab, setSelectedTab] = useState("1");
+	const [tabs, setTabs] = useState([]);
+	const [panels, setPanels] = useState([]);
 
-  const handleUpload = (e) => {
-    const file = e.target.files[0]
-    if(e.target.name === 'noc') {
-      setNoc(file);
-      setNocFileName(file.name)
-    } else {
-      setIdPr(file);
-      setIdPrFileName(file.name)
-    }
-    const storageRef = ref(storage, 'files/' + file.name);
-    uploadBytes(storageRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
-      getDownloadURL(snapshot.ref).then((downloadURL) => {
-        if(e.target.name === 'noc') {
-          setState((prevState) => ({...prevState, noc:downloadURL}));
-        } else {
-          setState((prevState) => ({...prevState, idProof:downloadURL}));
-        }
-      });
-    });
-  }
+	const handleUpload = (e) => {
+		const file = e.target.files[0];
+		if (e.target.name === "noc") {
+			setNoc(file);
+			setNocFileName(file.name);
+		} else {
+			setIdPr(file);
+			setIdPrFileName(file.name);
+		}
+		const storageRef = ref(storage, "files/" + file.name);
+		uploadBytes(storageRef, file).then((snapshot) => {
+			console.log("Uploaded a blob or file!");
+			getDownloadURL(snapshot.ref).then((downloadURL) => {
+				if (e.target.name === "noc") {
+					setState((prevState) => ({
+						...prevState,
+						noc: downloadURL,
+					}));
+				} else {
+					setState((prevState) => ({
+						...prevState,
+						idProof: downloadURL,
+					}));
+				}
+			});
+		});
+	};
 
-  const handleClick = (ref) => {
-    ref.current.click();
-  }
-  
-  const handleRadioChange = (event) => {
-    setValue(event.target.value);
-  };
+	const handleClick = (ref) => {
+		ref.current.click();
+	};
 
-  const handleChange = (e) => {
-    setState((prevState) => ({
-      ...prevState,
-      [e.target.name]:e.target.value
-    }));
-  };
-  
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+	const handleRadioChange = (event) => {
+		setValue(event.target.value);
+	};
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+	const handleChange = (e) => {
+		setState((prevState) => ({
+			...prevState,
+			[e.target.name]: e.target.value,
+		}));
+	};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    try {
-      saveDoc();
-      handleClose();
-      fetchAdminUsers();
-    } catch(e) {
-      alert("Something went wrong");
-    }
-  }
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
 
-  const fetchAdminUsers = async () => {    
-    let adminUsers = [];
-    let index = 1;
-    const queryAdminUsers = await getDocs(collection(db, "admin-users"));
-    queryAdminUsers.forEach((doc) => {
-      adminUsers.push({...doc.data(),id:index});
-      index++;
-    });
-    setData(adminUsers)
-    setLoading(false);
-  }
+	const handleClose = () => {
+		setOpen(false);
+	};
 
-  useEffect(() => {
-    fetchAdminUsers();
-  }, []);
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		try {
+			saveDoc();
+			handleClose();
+			fetchAdminUsers();
+		} catch (e) {
+			alert("Something went wrong");
+		}
+	};
 
-  const saveDoc = async () => {
-    await setDoc(doc(db, "admin-users", `${state.firstName} ${state.lastName}`), state);
-  }
-  const handleTabChange = (event, newValue) => {
-      setSelectedTab(newValue);
-  }
+	const fetchAdminUsers = async () => {
+		let adminUsers = [];
+		let index = 1;
+		const queryAdminUsers = await getDocs(collection(db, "admin-users"));
+		queryAdminUsers.forEach((doc) => {
+			adminUsers.push({ ...doc.data(), id: index });
+			index++;
+		});
+		setData(adminUsers);
+		setLoading(false);
+	};
 
-  const createNewTab = (newValue) => {
-    const newTab = {
-      label: newValue.split(" ")[0],
-      value: newValue
-    }
-    setTabs([...tabs, newTab]);
-    setSelectedTab(newTab.value);
-  }
-  const closeTab = (event, tabValue) => {
-    const tabsArr = tabs.filter(tab => tab.value !== tabValue);
-    setTabs(tabsArr);
-    setSelectedTab("1");
-    event.stopPropagation();
-  }
-  
-  return (
+	useEffect(() => {
+		fetchAdminUsers();
+	}, []);
+
+	const saveDoc = async () => {
+		await setDoc(
+			doc(db, "admin-users", `${state.firstName} ${state.lastName}`),
+			state
+		);
+	};
+	const handleTabChange = (event, newValue) => {
+		setSelectedTab(newValue);
+	};
+
+	const createNewTab = (newValue) => {
+		const newTab = {
+			label: newValue.split(" ")[0],
+			value: newValue,
+		};
+		setTabs([...tabs, newTab]);
+		setSelectedTab(newTab.value);
+	};
+	const closeTab = (event, tabValue) => {
+		const tabsArr = tabs.filter((tab) => tab.value !== tabValue);
+		setTabs(tabsArr);
+		setSelectedTab("1");
+		event.stopPropagation();
+	};
+
+	return (
 		<div>
 			<TabContext value={selectedTab}>
 				<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-					<TabList
-						onChange={handleTabChange}
+					<TabList 
+						onChange={handleTabChange} 
+						sx={{
+							"& button": {minWidth:'150px',minHeight:'50px',textTransform:'none', fontWeight: 'bold', border: '1px solid grey', borderBottom: 'none', marginRight: '2px'}
+						}}
 					>
 						<Tab
 							label="Admin List"
@@ -167,10 +186,8 @@ const AdminList = () => {
 								key={tab.value}
 								label={tab.label}
 								value={tab.value}
-								sx={{ textTransform: "none", minHeight: '' }}
-								icon={								
-										<CloseIcon onClick={(e) => closeTab(e, tab.value)} fontSize="" sx={{color:red[500]}}/>
-								}
+								sx={{ display:'flex',justifyContent:'space-between',padding:'10px' }}
+								icon={<CloseIcon onClick={(e) => closeTab(e, tab.value)} fontSize='small'/>}
 								iconPosition="end"
 							/>
 						))}
@@ -431,12 +448,12 @@ const AdminList = () => {
 							<CircularProgress />
 						</Box>
 					) : (
-						<AdminTable data={data} createNewTab={createNewTab}/>
+						<AdminTable data={data} createNewTab={createNewTab} />
 					)}
 				</TabPanel>
 			</TabContext>
 		</div>
-  );
+	);
 };
 
 export default AdminList;

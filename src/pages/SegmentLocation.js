@@ -10,6 +10,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const SegmentLocation = (props) => {
     const [textData, setTextData] = useState('');
@@ -23,6 +25,7 @@ const SegmentLocation = (props) => {
 	const [segments, setSegments] = useState([]);
 	const [countries, setCountries] = useState([]);
 	const [tableData, setTableData] = useState([]);
+	const [loading, setLoading] = useState(true);
 
     const handleTextChange = (event) => {
 		setTextData(event.target.value);
@@ -122,6 +125,7 @@ const SegmentLocation = (props) => {
 			index++;
 		});
 		setTableData(tableDataArr);
+		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -255,9 +259,18 @@ const SegmentLocation = (props) => {
 				</Button>
 			</Stack>
 			<br />
-			<div
-				style={{width:'100%'}}
-			>
+			<div style={{width:'100%'}}>
+			{loading ? (
+					<Box
+						sx={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						<CircularProgress />
+					</Box>
+				) : (
 				<DataGrid
 					disableRowSelectionOnClick
 					rows={tableData}
@@ -280,6 +293,7 @@ const SegmentLocation = (props) => {
 						},
 					}}
 				/>
+				)}
 			</div>
 		</div>
 	);

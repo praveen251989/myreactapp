@@ -68,10 +68,10 @@ const AdminTable = (props) => {
           <div >
             {params.row.approved === 'Y' ? 
             (
-              <Button variant="outlined" size="small" href="/admin/detail">View</Button>
+              <Button variant="outlined" size="small" sx={{minWidth:'82px'}} href="/admin/detail">View</Button>
             ) : 
             (
-              <Button variant="outlined" size="small" onClick={() => showReviewForm(params.row)}>Review</Button>
+              <Button variant="outlined" size="small" sx={{minWidth:'82px'}} onClick={() => showReviewForm(params.row)}>Review</Button>
             )}
           </div>
         );
