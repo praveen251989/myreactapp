@@ -29,8 +29,6 @@ const AdminTable = (props) => {
   }
   const userColumns = [
     { field: "id", headerName: "S.No", width: 100 },
-    {field: "firstName", headerName: "First Name", width: 200},
-    {field: "lastName", headerName: "Last Name", width: 200},
     {
       field: "name",
       headerName: "Name",
@@ -45,7 +43,7 @@ const AdminTable = (props) => {
 					variant="body2"
 					onClick={() =>
 						props.createNewTab(
-							`${params.row.firstName} ${params.row.id}`
+							`${params.row.firstName} ${params.row.lastName}_${params.row.id}`
 						)
 					}
 				>
@@ -55,6 +53,9 @@ const AdminTable = (props) => {
 		);
       },
     },
+    {field: "firstName", headerName: "First Name", width: 200},
+    {field: "lastName", headerName: "Last Name", width: 200},
+    
     {field: "address2", headerName: "Location", width: 200},
   ];
 
@@ -63,6 +64,7 @@ const AdminTable = (props) => {
       field: "action",
       headerName: "Action",
       width: 200,
+      filterable:false,
       renderCell: (params) => {
         return (
           <div >

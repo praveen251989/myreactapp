@@ -25,7 +25,6 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { red } from "@mui/material/colors";
 
 const AdminList = () => {
 	const initialState = {
@@ -152,12 +151,17 @@ const AdminList = () => {
 	};
 
 	const createNewTab = (newValue) => {
-		const newTab = {
-			label: newValue.split(" ")[0],
-			value: newValue,
-		};
-		setTabs([...tabs, newTab]);
-		setSelectedTab(newTab.value);
+		if(tabs.length < 9) {
+			if (tabs.length === 0 || tabs.every(tab => tab.value !== newValue)){
+				const newTab = {
+					label: newValue.split("_")[0],
+					value: newValue,
+				};
+				setTabs([...tabs, newTab]);
+				
+			}
+			setSelectedTab(newValue);
+		}
 	};
 	const closeTab = (event, tabValue) => {
 		const tabsArr = tabs.filter((tab) => tab.value !== tabValue);
@@ -187,7 +191,7 @@ const AdminList = () => {
 								label={tab.label}
 								value={tab.value}
 								sx={{ display:'flex',justifyContent:'space-between',padding:'10px' }}
-								icon={<CloseIcon onClick={(e) => closeTab(e, tab.value)} fontSize='small'/>}
+								icon={<CloseIcon onClick={(e) => closeTab(e, tab.value)} fontSize='small' sx={{'&:hover':{color:'red'}}}/>}
 								iconPosition="end"
 							/>
 						))}
