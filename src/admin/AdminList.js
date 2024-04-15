@@ -26,6 +26,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import Contact from "../pages/Contact";
 
 const AdminList = () => {
 	const initialState = {
@@ -159,7 +160,12 @@ const AdminList = () => {
 					value: newValue,
 				};
 				setTabs([...tabs, newTab]);
-				
+				setPanels([...panels, 
+					{
+						value: newValue,
+						child: ()=> <div>{<Contact name={newValue.split("_")[0]}/>}</div>
+					}
+				])
 			}
 			setSelectedTab(newValue);
 		}
@@ -456,6 +462,12 @@ const AdminList = () => {
 						<AdminTable data={data} createNewTab={createNewTab} />
 					)}
 				</TabPanel>
+				{panels.map(panel => (
+					<TabPanel key={panel.value} value={panel.value}>
+						{panel.child()}
+					</TabPanel>
+				))}
+				
 			</TabContext>
 		</div>
 	);
