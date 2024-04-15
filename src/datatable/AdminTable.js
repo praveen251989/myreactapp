@@ -55,7 +55,6 @@ const AdminTable = (props) => {
     },
     {field: "firstName", headerName: "First Name", width: 200},
     {field: "lastName", headerName: "Last Name", width: 200},
-    
     {field: "address2", headerName: "Location", width: 200},
   ];
 

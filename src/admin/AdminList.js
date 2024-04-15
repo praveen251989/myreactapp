@@ -25,6 +25,7 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const AdminList = () => {
 	const initialState = {
@@ -177,21 +178,21 @@ const AdminList = () => {
 					<TabList 
 						onChange={handleTabChange} 
 						sx={{
-							"& button": {minWidth:'150px',minHeight:'50px',textTransform:'none', fontWeight: 'bold', border: '1px solid grey', borderBottom: 'none', marginRight: '2px'}
+							"& button": {width:'150px',height:'50px',minHeight:'',textTransform:'none', fontWeight: 'bold', border: '1px solid grey', borderBottom: 'none', marginRight: '2px'}
 						}}
 					>
 						<Tab
-							label="Admin List"
+							label={<Typography noWrap={true} variant="body2" sx={{fontWeight:'bold'}}>Admin List</Typography> }
 							value="1"
 							sx={{ textTransform: "none" }}
 						/>
 						{tabs.map((tab) => (
 							<Tab
 								key={tab.value}
-								label={tab.label}
+								label={<Typography noWrap={true} variant="body2" sx={{fontWeight:'bold'}}>{tab.label}</Typography> }
 								value={tab.value}
 								sx={{ display:'flex',justifyContent:'space-between',padding:'10px' }}
-								icon={<CloseIcon onClick={(e) => closeTab(e, tab.value)} fontSize='small' sx={{'&:hover':{color:'red'}}}/>}
+								{...(tab.value === selectedTab && {icon:<CloseRoundedIcon onClick={(e) => closeTab(e, tab.value)} fontSize='' sx={{ '&:hover':{color:'white',backgroundColor:'grey'} }} />}) }
 								iconPosition="end"
 							/>
 						))}
