@@ -27,6 +27,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Contact from "../pages/Contact";
+import AdminDetail from "./AdminDetail";
 
 const AdminList = () => {
 	const initialState = {
@@ -152,18 +153,28 @@ const AdminList = () => {
 		setSelectedTab(newValue);
 	};
 
-	const createNewTab = (newValue) => {
+	const chooseElement = (contentType, name) => {
+		if(contentType === 'contact') {
+			return (<div><Contact name={name}/></div>);
+		}
+		if (contentType === 'adminDetail') {
+			return <div><AdminDetail/></div>
+		}
+	}
+
+	const createNewTab = (contentType, newValue) => {
 		if(tabs.length < 9) {
-			if (tabs.length === 0 || tabs.every(tab => tab.value !== newValue)){
+			if (tabs.length === 0 || tabs.every(tab => tab.value !== newValue)) {
+				const name = newValue.split("_")[0];
 				const newTab = {
-					label: newValue.split("_")[0],
+					label: name,
 					value: newValue,
 				};
 				setTabs([...tabs, newTab]);
 				setPanels([...panels, 
 					{
 						value: newValue,
-						child: ()=> <div>{<Contact name={newValue.split("_")[0]}/>}</div>
+						child: () => chooseElement(contentType, name)
 					}
 				])
 			}

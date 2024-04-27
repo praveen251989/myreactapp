@@ -42,9 +42,7 @@ const AdminTable = (props) => {
 					component="button"
 					variant="body2"
 					onClick={() =>
-						props.createNewTab(
-							`${params.row.firstName} ${params.row.lastName}_${params.row.id}`
-						)
+						props.createNewTab('contact',	`${params.row.firstName} ${params.row.lastName}_${params.row.id}`)
 					}
 				>
 					{params.row.firstName} {params.row.lastName}
@@ -69,7 +67,9 @@ const AdminTable = (props) => {
           <div >
             {params.row.approved === 'Y' ? 
             (
-              <Button variant="outlined" size="small" sx={{minWidth:'82px'}} href="/admin/detail">View</Button>
+              <Button variant="outlined" size="small" sx={{minWidth:'82px'}} 
+                onClick={() => props.createNewTab('adminDetail',`${params.row.firstName} ${params.row.lastName}_${params.row.id}`)
+              }>View</Button>
             ) : 
             (
               <Button variant="outlined" size="small" sx={{minWidth:'82px'}} onClick={() => showReviewForm(params.row)}>Review</Button>

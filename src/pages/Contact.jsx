@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
 	Stack,
-	RadioGroup,
-	FormControlLabel,
-	Radio,
-	Typography,
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { doc, getDoc } from "firebase/firestore";
@@ -115,7 +111,7 @@ const Contact = (props) => {
 					InputProps={{ readOnly: true }}
 				/>
 			</Stack>
-			<Stack direction="row" useFlexGap spacing={2}>
+			{/* <Stack direction="row" useFlexGap spacing={2}>
 				<Typography
 					variant="subtitle1"
 					gutterBottom
@@ -144,7 +140,7 @@ const Contact = (props) => {
 						label="No"
 					/>
 				</RadioGroup>
-			</Stack>
+			</Stack> */}
 			<Stack direction="row" useFlexGap spacing={spacing}>
 				<TextField
 					name="description"
