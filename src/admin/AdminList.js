@@ -64,7 +64,7 @@ const AdminList = () => {
 	const [selectedTab, setSelectedTab] = useState("1");
 	const [tabs, setTabs] = useState([]);
 	const [panels, setPanels] = useState([]);
-	const colorArray = ["#b3ecff","#d9f2d9","#ffffcc","#ffcccc", "#ebebe0", "#f2d9d9", "#ffd9b3", "#B0C4DE", "#ebccff"];
+	const colorArray = ["#b3ecff","#d9f2d9","#ffffcc","#ffcccc", "#F8F8FF", "#f2d9d9", "#ffd9b3", "#B0C4DE", "#ebccff"];
 
 	const handleUpload = (e) => {
 		const file = e.target.files[0];
