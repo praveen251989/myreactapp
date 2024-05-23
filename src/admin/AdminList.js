@@ -64,6 +64,7 @@ const AdminList = () => {
 	const [selectedTab, setSelectedTab] = useState("1");
 	const [tabs, setTabs] = useState([]);
 	const [panels, setPanels] = useState([]);
+	const colorArray = ["#b3ecff","#d9f2d9","#ffffcc","#ffcccc", "#ebebe0", "#f2d9d9", "#ffd9b3", "#B0C4DE", "#ebccff"];
 
 	const handleUpload = (e) => {
 		const file = e.target.files[0];
@@ -156,8 +157,7 @@ const AdminList = () => {
 	const chooseElement = (contentType, name) => {
 		if(contentType === 'contact') {
 			return (<div><Contact name={name}/></div>);
-		}
-		if (contentType === 'adminDetail') {
+		} else if (contentType === 'adminDetail') {
 			return <div><AdminDetail/></div>
 		}
 	}
@@ -179,6 +179,8 @@ const AdminList = () => {
 				])
 			}
 			setSelectedTab(newValue);
+		} else {
+			alert("Tabs Maximum number reached, Please close any existing tab for new one");
 		}
 	};
 	const closeTab = (event, tabValue) => {
@@ -192,30 +194,6 @@ const AdminList = () => {
 		<div>
 			<TabContext value={selectedTab}>
 				<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-					<TabList 
-						onChange={handleTabChange} 
-						sx={{
-							"& button": {width:'150px',height:'50px',minHeight:'',textTransform:'none', fontWeight: 'bold', border: '1px solid grey', borderBottom: 'none', marginRight: '2px'}
-						}}
-					>
-						<Tab
-							label={<Typography noWrap={true} variant="body2" sx={{fontWeight:'bold'}}>Admin List</Typography> }
-							value="1"
-							sx={{ textTransform: "none" }}
-						/>
-						{tabs.map((tab) => (
-							<Tab
-								key={tab.value}
-								label={<Typography noWrap={true} variant="body2" sx={{fontWeight:'bold'}}>{tab.label}</Typography> }
-								value={tab.value}
-								sx={{ display:'flex',justifyContent:'space-between',padding:'10px' }}
-								{...(tab.value === selectedTab && {icon:<CloseRoundedIcon onClick={(e) => closeTab(e, tab.value)} fontSize='' sx={{ '&:hover':{color:'white',backgroundColor:'grey'} }} />}) }
-								iconPosition="end"
-							/>
-						))}
-					</TabList>
-				</Box>
-				<TabPanel value="1">
 					<div>
 						<Button
 							variant="contained"
@@ -228,9 +206,33 @@ const AdminList = () => {
 								marginBottom: "20px",
 							}}
 						>
-							Add New
+							Add Admin
 						</Button>
 					</div>
+					<TabList 
+						onChange={handleTabChange} 
+						sx={{
+							"& button": {width:'150px',height:'50px',minHeight:'',textTransform:'none', fontWeight: 'bold', border: '1px solid grey', borderBottom: 'none', marginRight: '2px'}
+						}}
+					>
+						<Tab
+							label={<Typography noWrap={true} variant="body2" sx={{fontWeight:'bold'}}>Admin List</Typography> }
+							value="1"
+							sx={{ textTransform: "none" }}
+						/>
+						{tabs.map((tab, index) => (
+							<Tab
+								key={tab.value}
+								label={<Typography noWrap={true} variant="body2" sx={{fontWeight:'bold'}}>{tab.label}</Typography> }
+								value={tab.value}
+								sx={{ display:'flex',justifyContent:'space-between', padding:'10px',backgroundColor: colorArray[index] }}
+								icon= {<CloseRoundedIcon onClick={(e) => closeTab(e, tab.value)} fontSize='' sx={{ '&:hover':{color:'white', backgroundColor:'grey'} }} />}
+								iconPosition="end"
+							/>
+						))}
+					</TabList>
+				</Box>
+				<TabPanel value="1">
 					<Dialog open={open} onClose={handleClose}>
 						<DialogTitle>Admin Registration Form</DialogTitle>
 						<IconButton
