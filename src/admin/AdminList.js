@@ -156,7 +156,7 @@ const AdminList = () => {
 
 	const chooseElement = (contentType, name) => {
 		if(contentType === 'contact') {
-			return (<div><Contact name={name}/></div>);
+			return <div><Contact name={name}/></div>;
 		} else if (contentType === 'adminDetail') {
 			return <div><AdminDetail/></div>
 		}
