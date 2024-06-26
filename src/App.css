@@ -61,3 +61,40 @@
 .confWidth {
   width: 300px;
 }
+.flexDisplay-gp-1 {
+  display: flex;
+  gap: 10px;
+}
+.flexDisplay-gp-2 {
+  display: flex;
+  gap: 20px;
+}
+.flexDisplay-gp-3 {
+  display: flex;
+  gap: 30px;
+}
+.flexDisplay-gp-4 {
+  display: flex;
+  gap: 40px;
+}
+.flexDisplay-gp-5 {
+  display: flex;
+  gap: 50px;
+}
+.analytics-border {
+  border: 1px solid grey;
+}
+.analyticsTypes {
+  text-align: center;
+  padding: 18px;
+}
+.borderBottom {
+  border-bottom: 1px solid grey;
+  
+}
+.borderRight {
+  border-right: 1px solid grey;
+}
+.boldFont{
+  font-weight: bold;
+}
