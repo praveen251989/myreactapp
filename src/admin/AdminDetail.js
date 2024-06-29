@@ -45,14 +45,21 @@ const AdminDetail = () => {
 		{ id: 2, value: 20, label: 'Others' },
 	];
 
+	let TOTAL = ageData.map((item) => item.value).reduce((a, b) => a + b, 0);
 	const [data, setData] = React.useState(ageData);
+	const getArcLabel = (params) => {
+		const percent = params.value / TOTAL;
+		return `${(percent * 100).toFixed(0)}%`;
+	};
 
 	const changePie = (type) => {
 		switch(type) {
-			case 'gender': setData(genderData);break;
+			case 'gender': TOTAL = genderData.map((item) => item.value).reduce((a, b) => a + b, 0);
+							setData(genderData);break;
 			case 'demography': setData([]);break;
 			case 'employee': setData([]);break;
-			default: setData(ageData);break;
+			default: TOTAL = ageData.map((item) => item.value).reduce((a, b) => a + b, 0);
+					setData(ageData);
 		}
 	}
 	const userColumns = [
@@ -112,7 +119,8 @@ const AdminDetail = () => {
 						<div>
 							<PieChart
 								series={[
-									{
+									{	
+										arcLabel: getArcLabel,
 										data: [...data],
 									},
 								]}
@@ -145,7 +153,6 @@ const AdminDetail = () => {
 				</TabPanel>
 				<TabPanel value="6">
 					<div>
-						{/* <div>Type of Ads</div> */}
 						<FormControl component="fieldset" variant="standard">
 							<FormLabel component="legend">Type of Ads</FormLabel>
 							<FormGroup>

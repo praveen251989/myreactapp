@@ -186,6 +186,8 @@ const AdminList = () => {
 	const closeTab = (event, tabValue) => {
 		const tabsArr = tabs.filter((tab) => tab.value !== tabValue);
 		setTabs(tabsArr);
+		const panelsArr = panels.filter((panel) => panel.value !== tabValue)
+		setPanels(panelsArr);
 		setSelectedTab("1");
 		event.stopPropagation();
 	};
