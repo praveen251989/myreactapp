@@ -64,19 +64,19 @@ const AdminDetail = () => {
 	}
 	const userColumns = [
 		{field: "bid", headerName: "BID", width: 200},
-    	{field: "stDt", headerName: "Start Date", width: 200},
-    	{field: "endDt", headerName: "End Date", width: 200},
+		{field: "stDt", headerName: "Start Date", width: 200},
+		{field: "endDt", headerName: "End Date", width: 200},
 		{field: "amtPaid", headerName: "Amount Paid", width: 200},
-		{field: "arAmt", headerName: "Ar Amount", width: 200},
+		{field: "arAmt", headerName: "Available Amount", width: 200},
 		{field: "consAmt", headerName: "Consumed Amount", width: 200},
 		{field: "impressions", headerName: "Impressions", width: 200},
 	];
 
 	const rows = [
-		{ id:1, bid: 1, stDt: new Date("2015-03-25").toLocaleDateString(), endDt: 'john', amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
-		{ id:2, bid: 2, stDt: new Date("2018-02-2").toLocaleDateString(), endDt: 'one', amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
-		{ id:3, bid: 3, stDt: new Date("2019-08-15").toLocaleDateString(), endDt: 'two', amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
-		{ id:4, bid: 4123, stDt: new Date("2011-01-5").toLocaleDateString(), endDt: 'just', amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
+		{ id:1, bid: 1, stDt: new Date("2015-03-25").toLocaleDateString(), endDt: new Date("2016-03-25").toLocaleDateString(), amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
+		{ id:2, bid: 2, stDt: new Date("2018-02-2").toLocaleDateString(), endDt: new Date("2019-02-2").toLocaleDateString(), amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
+		{ id:3, bid: 3, stDt: new Date("2019-08-15").toLocaleDateString(), endDt: new Date("2020-08-15").toLocaleDateString(), amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
+		{ id:4, bid: 4123, stDt: new Date("2011-01-5").toLocaleDateString(), endDt: new Date("2012-01-5").toLocaleDateString(), amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
 	];
 
 

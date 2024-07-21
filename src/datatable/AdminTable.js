@@ -10,9 +10,12 @@ import Button from '@mui/material/Button';
 import { setDoc, doc } from "firebase/firestore";  
 import {db} from "../config/firebase";
 import Link from '@mui/material/Link';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 const AdminTable = (props) => {
   const [open, setOpen] = useState(false);
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [reviewFields, setReviewFields] = useState({});
 
   const handleClose = () => {
@@ -25,8 +28,17 @@ const AdminTable = (props) => {
   const approveAdmin = async () => {
     await setDoc(doc(db, "admin-users", `${reviewFields.firstName} ${reviewFields.lastName}`), {...reviewFields, approved: 'Y'});
     setOpen(false);
-    window.location.reload();
+    //window.location.reload();
+    setSnackBarOpen(true);
   }
+
+  const handleSnakbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   const userColumns = [
     { field: "id", headerName: "S.No", width: 100 },
     {
@@ -66,21 +78,32 @@ const AdminTable = (props) => {
         return (
           <div >
             {params.row.approved === 'Y' ? 
-            (
-              <Button variant="outlined" size="small" sx={{minWidth:'82px'}} 
-                onClick={() => props.createNewTab('adminDetail',`${params.row.firstName} ${params.row.lastName}_${params.row.id}`)
-              }>View</Button>
-            ) : 
-            (
-              <Button variant="outlined" size="small" sx={{minWidth:'82px'}} onClick={() => showReviewForm(params.row)}>Review</Button>
-            )}
+              (
+                <Button variant="outlined" size="small" sx={{minWidth:'82px'}} 
+                  onClick={() => props.createNewTab('adminDetail',`${params.row.firstName} ${params.row.lastName}_${params.row.id}`)
+                }>View</Button>
+              ) : 
+              (
+                <Button variant="outlined" size="small" sx={{minWidth:'82px'}} onClick={() => showReviewForm(params.row)}>Review</Button>
+              )
+            }
           </div>
         );
       },
     },
   ];
   return (
-    <div className="datatable">  
+    <div className="datatable">
+      <Snackbar open={snackBarOpen} autoHideDuration={1500} onClose={handleSnakbarClose} anchorOrigin={{ vertical:"bottom", horizontal:"right" }}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          This is a success Alert inside a Snackbar!
+        </Alert>
+      </Snackbar>
       <Dialog open={open} onClose={handleClose}>        
         <IconButton
           aria-label="close"
