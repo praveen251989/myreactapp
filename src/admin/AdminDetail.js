@@ -12,7 +12,8 @@ import { Portal } from '@mui/base/Portal';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { FormControl, FormLabel } from "@mui/material";
+import { FormControl, FormLabel, Select, MenuItem } from "@mui/material";
+import TextField from '@mui/material/TextField';
 
 function MyCustomToolbar(props) {
 	return (
@@ -27,10 +28,15 @@ function MyCustomToolbar(props) {
 
 const AdminDetail = () => {
 	const [value, setValue] = React.useState("1");
+	const [businessConcern, setBusinessConcern] = React.useState("Concerns");
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
+
+	const handleChangeConcerns =(event) => {
+		setBusinessConcern(event.target.value);
+	}
 
 	const ageData = [
 		{ id: 0, value: 10, label: '1-18' },
@@ -67,16 +73,16 @@ const AdminDetail = () => {
 		{field: "stDt", headerName: "Start Date", width: 200},
 		{field: "endDt", headerName: "End Date", width: 200},
 		{field: "amtPaid", headerName: "Amount Paid", width: 200},
-		{field: "arAmt", headerName: "Available Amount", width: 200},
+		{field: "avAmt", headerName: "Available Amount", width: 200},
 		{field: "consAmt", headerName: "Consumed Amount", width: 200},
 		{field: "impressions", headerName: "Impressions", width: 200},
 	];
 
 	const rows = [
-		{ id:1, bid: 1, stDt: new Date("2015-03-25").toLocaleDateString(), endDt: new Date("2016-03-25").toLocaleDateString(), amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
-		{ id:2, bid: 2, stDt: new Date("2018-02-2").toLocaleDateString(), endDt: new Date("2019-02-2").toLocaleDateString(), amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
-		{ id:3, bid: 3, stDt: new Date("2019-08-15").toLocaleDateString(), endDt: new Date("2020-08-15").toLocaleDateString(), amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
-		{ id:4, bid: 4123, stDt: new Date("2011-01-5").toLocaleDateString(), endDt: new Date("2012-01-5").toLocaleDateString(), amtPaid: 14, arAmt:123, consAmt:465, impressions:'' },
+		{ id:1, bid: 1, stDt: new Date("2015-03-25").toLocaleDateString(), endDt: new Date("2016-03-25").toLocaleDateString(), amtPaid: 14, avAmt:123, consAmt:465, impressions:'' },
+		{ id:2, bid: 2, stDt: new Date("2018-02-2").toLocaleDateString(), endDt: new Date("2019-02-2").toLocaleDateString(), amtPaid: 14, avAmt:123, consAmt:465, impressions:'' },
+		{ id:3, bid: 3, stDt: new Date("2019-08-15").toLocaleDateString(), endDt: new Date("2020-08-15").toLocaleDateString(), amtPaid: 14, avAmt:123, consAmt:465, impressions:'' },
+		{ id:4, bid: 4123, stDt: new Date("2011-01-5").toLocaleDateString(), endDt: new Date("2012-01-5").toLocaleDateString(), amtPaid: 14, avAmt:123, consAmt:465, impressions:'' },
 	];
 
 
@@ -172,7 +178,26 @@ const AdminDetail = () => {
 						</FormControl>
 					</div>
 				</TabPanel>
-				<TabPanel value="7">Item Seven</TabPanel>
+				<TabPanel value="7">
+					<div className="">
+						<Box >
+							<FormControl sx={{minWidth:250}}>
+								<Select
+									value={businessConcern}
+									onChange={handleChangeConcerns}
+								>
+									<MenuItem value="Concerns">Concerns</MenuItem>
+									<MenuItem value="newRequirement">New Requirement</MenuItem>
+									<MenuItem value="reference">Reference</MenuItem>
+								</Select>
+							</FormControl>
+							<br/><br/>
+							<TextField sx={{minWidth:250}}	multiline rows={4}/>
+							<br/><br/>
+							<Button variant="contained">Submit</Button>
+						</Box>
+					</div>
+				</TabPanel>
 			</TabContext>
 		</Box>
 	);

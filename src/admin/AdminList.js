@@ -168,6 +168,7 @@ const AdminList = () => {
 				const name = newValue.split("_")[0];
 				const newTab = {
 					label: name,
+					subText: contentType === 'contact' ?  'contact' : 'admin detail',
 					value: newValue,
 				};
 				setTabs([...tabs, newTab]);
@@ -225,7 +226,7 @@ const AdminList = () => {
 						{tabs.map((tab, index) => (
 							<Tab
 								key={tab.value}
-								label={<Typography noWrap={true} variant="body2" sx={{fontWeight:'bold'}}>{tab.label}</Typography> }
+								label={<div><Typography noWrap={true} variant="body2" sx={{fontWeight:'bold'}}>{tab.label}</Typography><Typography variant="caption" >{tab.subText}</Typography></div>}
 								value={tab.value}
 								sx={{ display:'flex',justifyContent:'space-between', padding:'10px',backgroundColor: colorArray[index] }}
 								icon= {<CloseRoundedIcon onClick={(e) => closeTab(e, tab.value)} fontSize='' sx={{ '&:hover':{color:'white', backgroundColor:'grey'} }} />}
@@ -287,6 +288,7 @@ const AdminList = () => {
 										spacing={2}
 									>
 										<TextField
+											required
 											name="email"
 											size="small"
 											label="Email"
@@ -474,7 +476,7 @@ const AdminList = () => {
 							<CircularProgress />
 						</Box>
 					) : (
-						<AdminTable data={data} createNewTab={createNewTab} />
+						<AdminTable data={data} createNewTab={createNewTab} fetchAdminUsersFun={fetchAdminUsers}/>
 					)}
 				</TabPanel>
 				{panels.map(panel => (

@@ -17,6 +17,7 @@ const AdminTable = (props) => {
   const [open, setOpen] = useState(false);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [reviewFields, setReviewFields] = useState({});
+  const {fetchAdminUsersFun} = props;
 
   const handleClose = () => {
     setOpen(false);
@@ -28,7 +29,6 @@ const AdminTable = (props) => {
   const approveAdmin = async () => {
     await setDoc(doc(db, "admin-users", `${reviewFields.firstName} ${reviewFields.lastName}`), {...reviewFields, approved: 'Y'});
     setOpen(false);
-    //window.location.reload();
     setSnackBarOpen(true);
   }
 
@@ -36,7 +36,8 @@ const AdminTable = (props) => {
     if (reason === 'clickaway') {
       return;
     }
-    setOpen(false);
+    setSnackBarOpen(false);
+    fetchAdminUsersFun();
   };
 
   const userColumns = [
@@ -54,7 +55,7 @@ const AdminTable = (props) => {
 					component="button"
 					variant="body2"
 					onClick={() =>
-						props.createNewTab('contact',	`${params.row.firstName} ${params.row.lastName}_${params.row.id}`)
+						props.createNewTab('contact',	`${params.row.firstName} ${params.row.lastName}_${params.row.id}#contact`)
 					}
 				>
 					{params.row.firstName} {params.row.lastName}
@@ -80,7 +81,7 @@ const AdminTable = (props) => {
             {params.row.approved === 'Y' ? 
               (
                 <Button variant="outlined" size="small" sx={{minWidth:'82px'}} 
-                  onClick={() => props.createNewTab('adminDetail',`${params.row.firstName} ${params.row.lastName}_${params.row.id}`)
+                  onClick={() => props.createNewTab('adminDetail',`${params.row.firstName} ${params.row.lastName}_${params.row.id}#admindetail`)
                 }>View</Button>
               ) : 
               (
@@ -94,14 +95,19 @@ const AdminTable = (props) => {
   ];
   return (
     <div className="datatable">
-      <Snackbar open={snackBarOpen} autoHideDuration={1500} onClose={handleSnakbarClose} anchorOrigin={{ vertical:"bottom", horizontal:"right" }}>
+      <Snackbar 
+        open={snackBarOpen} 
+        autoHideDuration={2000} 
+        onClose={handleSnakbarClose} 
+        anchorOrigin={{ vertical:"bottom", horizontal:"right" }}
+      >
         <Alert
           onClose={handleClose}
           severity="success"
           variant="filled"
           sx={{ width: '100%' }}
         >
-          This is a success Alert inside a Snackbar!
+          Approved Successfully
         </Alert>
       </Snackbar>
       <Dialog open={open} onClose={handleClose}>        
