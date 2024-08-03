@@ -28,6 +28,7 @@ import { AuthContext } from "./context/AuthContext";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import HomeIcon from '@mui/icons-material/Home';
 import HomePage from "./pages/HomePage";
+import QuizzletPage from "./pages/QuizzletPage";
 
 
 const drawerWidth = 240;
@@ -344,10 +345,11 @@ const Home = () => {
 					</ListItemButton>
 				</List>
 			</Drawer>
-			<Box component="main" sx={{ flexGrow: 1, p: 3,marginTop:'50px' }}>
+			<Box component="main" sx={{ flexGrow: 1, p: 3, marginTop:'50px' }}>
 				{content === 'homepage' && <HomePage/>}				
 				{content === 'admin' && <AdminList/> }
 				{content === 'configuration' && <Configuration/> }
+				{content === 'quizzlet' && <QuizzletPage/> }
 			</Box>
 		</Box>
 	);
